@@ -3,12 +3,12 @@ let countryInp = document.getElementById("country-inp")
 
 searchBtn.addEventListener("click",()=>{
     let countryName = countryInp.value;
-    let  finalURL = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
+    let  finalURL = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`; 
     console.log(finalURL);
     fetch(finalURL)
     .then ((response)=> response.json()) 
-    .then ((data)=>{
-        
+    .then ((data)=>{ 
+        let Data = data;       
         result.innerHTML = `
         <img src="${data[0].flags.svg}" class="flag-img">
         <h2>${data[0].name.common}</h2>
@@ -47,14 +47,15 @@ searchBtn.addEventListener("click",()=>{
                   .join(", ")}</span>
             </div>
         </div>
-`      
-    })
-        .catch(() => {
+`     
+    }) 
+    .catch(() => {
        if (countryName.length == 0) {
          result.innerHTML = `<h3>The input field cannot be empty</h3>`;
        } else {
          result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
        }
  })
+  });
 
 
